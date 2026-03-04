@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: hsl(0, 0%, 80%);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.wrapper button{
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+.logo-and-header{
+    display: flex;
+    justify-content: space-between;
+    background-color: hsl(0, 0%, 60%);
+    padding: 10px 150px;
+    width: 100%;
+   border-bottom: 3px solid black;
+}
+
+.student-and-course-info{
+    background-color: hsl(0, 0%, 70%);
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 400px;
+    margin-top: 30px;
+    border-top: 3px solid white;
+    font-size: 2rem;
+    
+}

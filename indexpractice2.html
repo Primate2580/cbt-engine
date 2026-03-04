@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CBT App</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+        body { 
+            background-color: var(--bg); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: screen; 
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--primary);
+            padding: 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        
+        .logo-placeholder {
+            background: white;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .header h1 { font-size: 1.5rem; letter-spacing: 1px; }
+
+        /* Content Section */
+        .content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        h3 { 
+            color: var(--text-dark); 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .info-group { margin-bottom: 15px; }
+        
+        .label { 
+            color: var(--text-light); 
+            font-size: 0.8rem; 
+            display: block; 
+            margin-bottom: 2px;
+        }
+
+        .value { 
+            color: var(--text-dark); 
+            font-weight: 600; 
+            font-size: 1rem;
+        }
+
+        .highlight { color: var(--primary); font-family: monospace; }
+
+        /* Footer Section */
+        .footer {
+            background: #f1f5f9;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            text-transform: uppercase;
+        }
+
+        .start-btn:hover { background: #4338ca; }
+        .start-btn:active { transform: scale(0.96); }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-placeholder">CBT</div>
+                <h1>EXAM PORTAL</h1>
+            </div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">2025/2026</div>
+        </div>
+
+        <div class="content">
+            <div class="student-info">
+                <h3>Student Details</h3>
+                <div class="info-group">
+                    <span class="label">Name:</span>
+                    <span class="value">John Alexander Doe</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Department:</span>
+                    <span class="value">Computer Science</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Examination Number:</span>
+                    <span class="value highlight">CBT/STU/2024/041</span>
+                </div>
+            </div>
+
+            <div class="exam-info">
+                <h3>Exam Information</h3>
+                <div class="info-group">
+                    <span class="label">Course Title:</span>
+                    <span class="value">Artificial Intelligence</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Course Code:</span>
+                    <span class="value">CSC 401</span>
+                </div>
+                <div class="info-group">
+                    <span class="label">Duration:</span>
+                    <span class="value" style="color: #e11d48;">60 Minutes</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="start-btn">Click here to start</button>
+        </div>
+    </div>
+</body>
+</html>

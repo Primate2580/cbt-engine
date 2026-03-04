@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login | CBT App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
+        <div class="text-center mb-8">
+            <div
+                class="w-16 h-16 bg-indigo-100 text-indigo-700 rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-4">
+                CBT</div>
+            <h2 class="text-2xl font-bold text-slate-800">Secure Login</h2>
+            <p class="text-slate-500 text-sm">Enter your credentials to start your exam</p>
+        </div>
+
+        <form class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Examination Number</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </span>
+                    <input type="text" id="examNumber" placeholder="CBT/2024/001"
+                        class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-mono">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Password</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </span>
+                    <input type="password" id="password" placeholder="••••••••"
+                        class="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+                </div>
+            </div>
+
+            <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3
+             rounded-xl shadow-lg shadow-indigo-100 transition-all 
+             active:scale-95 uppercase tracking-widest" onclick="loginStudent()" id="login-button">
+                Log In
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+            <!-- <p class="text-sm text-slate-500">
+                New user? <a href="#" class="text-indigo-600 font-bold hover:underline">Create an account</a>
+            </p> -->
+        </div>
+    </div>
+</body>
+<script>
+    let database = []
+    let overallPassword = "password123"
+    let studentDetails = [
+
+        {
+            name: "Mike Mauroes",
+            department: "Computer Science",
+            level: "400",
+            examNumber: 1234567
+        },
+
+        {
+            name: "Ade Isaac",
+            department: "Computer Science",
+            level: 100,
+            examNumber: 3241567
+        },
+
+        {
+            name: "Neagly Hiance",
+            department: "Computer Science",
+            level: 200,
+            examNumber: 2341678
+        },
+
+        {
+            name: "John Smart",
+            department: "Computer Science",
+            level: 300,
+            examNumber: 8976524
+        },
+
+        {
+            name: "Tayo Tamuno",
+            department: "Computer Science",
+            level: 400,
+            examNumber: 1234098
+        }
+    ]
+
+    database.push(studentDetails)
+    console.log(database);
+    localStorage.setItem("studentDetails", JSON.stringify(studentDetails))
+
+
+    function loginStudent() {
+        // Get the input values
+        let examNumber = document.getElementById('examNumber').value.trim()
+        let password = document.getElementById('password').value.trim()
+        let storedStudents = JSON.parse(localStorage.getItem("studentDetails")) || []
+        let myButton = document.getElementById('login-button')
+        let foundStudent = studentDetails.find((student) => {
+            return student.examNumber === Number(examNumber)
+        })
+
+        console.log(examNumber, password);
+
+
+        if (!examNumber || !password) {
+            alert("Please enter both examination number and password.")
+
+        }
+        else if (password !== overallPassword) {
+            alert("Incorrect password. Please try again.")
+
+        }
+        else if (isNaN(examNumber)) {
+            alert("Examination number must be numeric.")
+
+        }
+
+        else if (foundStudent) {
+            myButton.innerHTML = 'Loading...'
+            myButton.disabled = true
+
+            let studentIndex = studentDetails.findIndex((student) => {
+                return student.examNumber === Number(examNumber);
+            });
+            console.log(studentIndex);
+            
+            // 2. Save it to localStorage immediately
+            localStorage.setItem("currentStudent", studentIndex);
+            // Debugging: check if it's actually finding it before leaving the page
+            console.log(studentIndex);
+
+            alert("Login successful! Redirecting to dashboard...")
+            setTimeout(() => {
+                myButton.innerHTML = 'Log In'
+                myButton.disabled = false
+            }, 3000)
+            window.location.href = "index.html"
+            // let studentIndex=database.findIndex((student) => {
+            //     return student.examNumber === Number(examNumber)
+            //     localStorage.setItem("currentStudent", studentIndex)
+            //     console.log(studentIndex);
+
+            // })
+        }
+        else {
+            alert("Examination number not found. Please check your credentials and try again.")
+        }
+    }
+</script>
+
+</html>
