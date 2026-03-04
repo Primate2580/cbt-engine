@@ -407,12 +407,15 @@
         const savedData = localStorage.getItem('cbtData'); 
         if (savedData) { 
             const parsed = JSON.parse(savedData); 
-            questions = parsed.questions; 
+            questions = parsed.questions;  //Questions (including saved answers)
             currentQuestionIndex = parsed.currentQuestionIndex; 
             timeInSeconds = parsed.timeInSeconds; 
         } 
     } 
-    loadFromStorage(); 
+   
+    
+
+    loadFromStorage();  //Load saved state first.
     displayQuestions();
 
     function displayQuestions() {
@@ -441,6 +444,9 @@
         });
     }
 
+
+
+
     function next() {
         if (currentQuestionIndex < questions.length - 1) {
             currentQuestionIndex += 1;
@@ -455,6 +461,9 @@
         saveAnswer();
         next();
     });
+
+
+
 
     function prev() {
         if (currentQuestionIndex > 0) {
@@ -478,6 +487,9 @@
             saveToStorage();
         }
     }
+
+
+
 
     function submit() {
         saveAnswer();
@@ -504,8 +516,10 @@
         }
         alert(resultMessage);
         localStorage.removeItem('cbtData');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
+
+
 
     function startTimer() {
         const countdown = setInterval(() => {
@@ -528,6 +542,8 @@
         }, 1000);
     }
     startTimer();
+
+
 
     function saveToStorage() {
         localStorage.setItem('cbtData', JSON.stringify({
